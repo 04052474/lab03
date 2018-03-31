@@ -1,0 +1,30 @@
+const byte pin=A1;
+int val;
+float Vin=2.5;
+float sensorVoltage, sensorValue;
+float R=50000000;
+void setup() {
+  Serial.begin(9600);
+  pinMode(15,OUTPUT);
+  sensorVoltage = 0;
+   sensorValue = 0;
+}
+
+void loop() {
+  byte i;
+  float R1,R2;
+  for(i=0;i<=5;i++)
+  sensorValue = 0.7*sensorValue+0.3*analogRead(A1);
+ 
+  Serial.print("AnalogReadÅª­È=");
+  Serial.print(sensorValue);
+  sensorVoltage = sensorValue*2.5/4095;
+  R1=sensorVoltage*R/Vin;
+  Serial.print("  R1=");
+  Serial.print(R1);
+  Serial.print("  ±À´ú¹qÀ£=");
+  Serial.print(sensorVoltage);
+  Serial.println();
+  delay(500);
+
+}
